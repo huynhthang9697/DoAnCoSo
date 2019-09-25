@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyPhamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="HinhAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ChuyenMuc">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="TenChuyenMuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ThongTin" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DanhGia" Type="Int32" />
+    <Property Name="GiaTien" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Slideshow">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ThanhVien">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenThanhVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="TenTinTuc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NgayVietTin" Type="DateTime" Precision="3" />
+    <Property Name="ChuyenMucID" Type="Guid" />
+  </EntityType>
+  <EntityContainer Name="MyPhamEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Banners" EntityType="Self.Banner" />
+    <EntitySet Name="ChuyenMucs" EntityType="Self.ChuyenMuc" />
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <EntitySet Name="Slideshows" EntityType="Self.Slideshow" />
+    <EntitySet Name="ThanhViens" EntityType="Self.ThanhVien" />
+    <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
+  </EntityContainer>
+</Schema>
