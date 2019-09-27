@@ -1,0 +1,644 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@{
+    var db = new DoAnCoSo.Models.MyPhamEntities();
+}
+<!-- hero slider start -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="slider-wrapper-area">
+                <div class="hero-slider-active hero__1 slick-dot-style hero-dot">
+                    @{
+                        List<DoAnCoSo.Models.Slideshow> slideshow = (from s in db.Slideshows select s).ToList();
+                        foreach (var item in slideshow)
+                        {
+
+                            <div class="single-slider" style="background-image: url(Assets/img/SlideShow/@item.HinhAnh);">
+                                <div class="container p-0">
+                                    <div class="slider-main-content">
+                                        <div class="slider-content-img">
+                                            <img src="Assets/img/slider/slider11_lable1.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- hero slider end -->
+<!-- home banner area start -->
+<div class="banner-area mt-30">
+    <div class="container">
+        <div class="row">
+            @{
+                List<DoAnCoSo.Models.Banner> banner = (from s in db.Banners select s).Take(3).ToList();
+                foreach (var item in banner)
+                {
+                    <div class="col-lg-4 col-md-4 order-sm-3">
+                        <div class="img-container img-full fix mb-30">
+                            <a href="#">
+                                <img src="Assets/img/banner/@item.HinhAnh" alt="">
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- home banner area end -->
+<!-- page wrapper start -->
+<div class="page-wrapper pt-6 pb-28 pb-md-6 pb-sm-6 pt-xs-36">
+    <div class="container">
+        <div class="row">
+            <!-- start home sidebar -->
+            <div class="col-lg-3">
+                <div class="home-sidebar">
+                    <!-- hot deals area start -->
+                    <div class="main-sidebar hot-deals-wrap mb-30">
+                        <div class="section-title-2 d-flex justify-content-between mb-28">
+                            <h3>Nổi Bật</h3>
+                            <div class="slick-append"></div>
+                        </div> <!-- section title end -->
+                        <div class="deals-carousel-active slick-padding slick-arrow-style">
+                            @{
+                                List<DoAnCoSo.Models.SanPham> noibat = (from s in db.SanPhams orderby s.GiaTien descending select s).Take(5).ToList();
+                                foreach (var item in noibat)
+                                {
+                                    <!-- product single item start -->
+                                    <div class="product-item fix">
+                                        <div class="product-thumb">
+                                            <a href="product-details.html">
+                                                <img src="Assets/img/SanPham/@item.HinhAnh" alt="">
+
+                                            </a>
+                                            <div class="product-label">
+                                                <span>hot</span>
+                                            </div>
+                                            <div class="product-action-link">
+                                                <a href="#" data-toggle="modal" data-target="#quick_view">
+                                                    <span data-toggle="tooltip" data-placement="left" title="Quick view">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Compare">
+                                                    <i class="fa fa-refresh"></i>
+                                                </a>
+                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to cart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                            <div class="pricebox">
+                                                <span class="regular-price">@item.GiaTien.Value.ToString("#,##0 đ")</span>
+                                                <div class="ratings">
+                                                    @for (int i = 0; i < item.DanhGia; i++)
+                                                    {
+                                                        <span class="good"><i class="fa fa-star"></i></span>
+                                                    }
+                                                    <div class="pro-review">
+                                                        <span>1 review(s)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- product single item end -->
+                                }
+                            }
+                        </div>
+                    </div>
+                    <!-- hot deals area end -->
+                    <!-- best seller area start -->
+                    <div class="main-sidebar category-wrapper mb-24">
+                        <div class="section-title-2 d-flex justify-content-between mb-28">
+                            <h3>Ưu Đãi</h3>
+                            <div class="category-append"></div>
+                        </div> <!-- section title end -->
+                        <div class="category-carousel-active row" data-row="4">
+                            @{
+                                List<DoAnCoSo.Models.SanPham> uudai = (from s in db.SanPhams orderby s.GiaTien ascending select s).Take(8).ToList();
+                                foreach (var item in uudai)
+                                {
+                                    <div class="col">
+                                        <div class="category-item">
+                                            <div class="category-thumb">
+                                                <a href="product-details.html">
+                                                    <img src="~/Assets/img/SanPham/@item.HinhAnh" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="category-content">
+                                                <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                                <div class="price-box">
+                                                    <div class="regular-price">
+                                                        @item.GiaTien.Value.ToString("#,##0 đ")
+                                                    </div>
+                                                    <div class="old-price">
+                                                        <del>$180.00</del>
+                                                    </div>
+                                                </div>
+                                                <div class="ratings">
+                                                    @for (int i = 0; i < item.DanhGia; i++)
+                                                    {
+                                                        <span class="good"><i class="fa fa-star"></i></span>
+                                                    }
+                                                    <div class="pro-review">
+                                                        <span>1 review(s)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end single item -->
+                                    </div> <!-- end single item column -->
+                                }
+                            }
+                        </div>
+                    </div>
+                    <!-- best seller area end -->
+                    <!-- blog area start -->
+                    <div class="main-sidebar blog-area mb-24">
+                        <div class="section-title-2 d-flex justify-content-between mb-28">
+                            <h3>Tin Tức Mới</h3>
+                            <div class="category-append"></div>
+                        </div> <!-- section title end -->
+                        <!-- blog wrapper start -->
+                        <div class="blog-carousel-active">
+                            <div class="blog-item">
+                                <div class="blog-thumb img-full fix">
+                                    <a href="blog-details.html">
+                                        <img src="Assets/img/blog/img_blog1.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h3><a href="blog-details.html">post format audio</a></h3>
+                                    <div class="blog-meta">
+                                        <span class="posted-author">by: admin</span>
+                                        <span class="post-date">25 Nov, 2018</span>
+                                    </div>
+                                    <p>
+                                        Curabitur sed diam enim. Sed varius faucibus lectus, a scelerisque massa
+                                        posuere ac. Quisque dapibus, est ac...
+                                    </p>
+                                </div>
+                                <a href="blog-details.html">read more <i class="fa fa-long-arrow-right"></i></a>
+                            </div> <!-- end single blog item -->
+                            <div class="blog-item">
+                                <div class="blog-thumb img-full fix">
+                                    <a href="blog-details.html">
+                                        <img src="Assets/img/blog/img_blog2.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    <h3><a href="blog-details.html">post format image</a></h3>
+                                    <div class="blog-meta">
+                                        <span class="posted-author">by: admin</span>
+                                        <span class="post-date">25 Nov, 2018</span>
+                                    </div>
+                                    <p>
+                                        Curabitur sed diam enim. Sed varius faucibus lectus, a scelerisque massa
+                                        posuere ac. Quisque dapibus, est ac...
+                                    </p>
+                                </div>
+                                <a href="blog-details.html">read more <i class="fa fa-long-arrow-right"></i></a>
+                            </div> <!-- end single blog item -->
+                        </div>
+                        <!-- blog wrapper end -->
+                    </div>
+                    <!-- blog area end -->
+                    <!-- testimonial area start -->
+                    <div class="main-sidebar testimonial-area pb-sm-70">
+                        <div class="section-title-2 mb-28">
+                            <h3>Clients Say</h3>
+                        </div> <!-- section title end -->
+                        <div class="testimonial-carousel-active slick-dot-style">
+                            <div class="testimonial-item text-center">
+                                <div class="testimonial-thumb">
+                                    <img src="Assets/img/testimonial/team_member1.jpg" alt="">
+                                </div>
+                                <div class="testimonial-content">
+                                    <h3><a href="#">Elizabeth Taylor</a></h3>
+                                    <p>
+                                        Etiam rhoncus congue arcu sed interdum. Cras dolor diam, accumsan eu
+                                        aliquam eu, luctus vehicula velit. Nam eget tortor ut felis fermentum
+                                        sodales ac eu lacus
+                                    </p>
+                                </div>
+                            </div> <!-- end single testimonial item -->
+                            <div class="testimonial-item text-center">
+                                <div class="testimonial-thumb">
+                                    <img src="Assets/img/testimonial/team_member2.jpg" alt="">
+                                </div>
+                                <div class="testimonial-content">
+                                    <h3><a href="#">Elizabeth Taylor</a></h3>
+                                    <p>
+                                        Etiam rhoncus congue arcu sed interdum. Cras dolor diam, accumsan eu
+                                        aliquam eu, luctus vehicula velit. Nam eget tortor ut felis fermentum
+                                        sodales ac eu lacus
+                                    </p>
+                                </div>
+                            </div> <!-- end single testimonial item -->
+                            <div class="testimonial-item text-center">
+                                <div class="testimonial-thumb">
+                                    <img src="Assets/img/testimonial/team_member3.jpg" alt="">
+                                </div>
+                                <div class="testimonial-content">
+                                    <h3><a href="#">Elizabeth Taylor</a></h3>
+                                    <p>
+                                        Etiam rhoncus congue arcu sed interdum. Cras dolor diam, accumsan eu
+                                        aliquam eu, luctus vehicula velit. Nam eget tortor ut felis fermentum
+                                        sodales ac eu lacus
+                                    </p>
+                                </div>
+                            </div> <!-- end single testimonial item -->
+                        </div>
+                    </div>
+                    <!-- testimonial area end -->
+
+                </div>
+            </div>
+            <!-- end home sidebar -->
+
+            <div class="col-lg-9">
+                <!-- featured category area start -->
+                <div class="feature-category-area mt-md-70">
+                    <div class="section-title mb-30">
+                        <div class="title-icon">
+                            <i class="fa fa-bookmark"></i>
+                        </div>
+                        <h3>Kem Dưỡng Da</h3>
+                    </div> <!-- section title end -->
+                    <!-- featured category start -->
+                    <div class="featured-carousel-active slick-padding slick-arrow-style">
+                        <!-- product single item start -->
+                        @{
+                            List<DoAnCoSo.Models.SanPham> kemduongda = (from s in db.SanPhams select s).Where(w => w.TenDanhMuc == "Kem").Take(6).ToList();
+                            foreach (var item in kemduongda)
+                            {
+                                <div class="product-item fix">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="~/Assets/img/SanPham/@item.HinhAnh" alt="">
+
+                                        </a>
+                                        <div class="product-label">
+                                            <span>hot</span>
+                                        </div>
+                                        <div class="product-action-link">
+                                            <a href="#" data-toggle="modal" data-target="#quick_view">
+                                                <span data-toggle="tooltip" data-placement="left" title="Quick view">
+                                                    <i class="fa fa-search"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist">
+                                                <i class="fa fa-heart-o"></i>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Compare">
+                                                <i class="fa fa-refresh"></i>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Add to cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                        <div class="pricebox">
+                                            <span class="regular-price">@item.GiaTien.Value.ToString("#,##0 đ")</span>
+                                            <div class="ratings">
+                                                @for (int i = 0; i < item.DanhGia; i++)
+                                                {
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                }
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <!-- featured category end -->
+                </div>
+                <!-- featured category area end -->
+                <!-- banner statistic start -->
+                <div class="banner-statistic pt-28 pb-36">
+                    <div class="img-container fix img-full">
+                        <a href="#">
+                            <img src="Assets/img/banner/banner_static1.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!-- banner statistic end -->
+                <!-- featured category area start -->
+                <div class="feature-category-area">
+                    <div class="section-title mb-30">
+                        <div class="title-icon">
+                            <i class="fa fa-flask"></i>
+                        </div>
+                        <h3>Nước Hoa</h3>
+                    </div> <!-- section title end -->
+                    <!-- featured category start -->
+                    <div class="featured-carousel-active slick-padding slick-arrow-style">
+                        @{
+                            List<DoAnCoSo.Models.SanPham> nuochoa = (from s in db.SanPhams select s).Where(w => w.TenSanPham =="Nước Hoa").Take(6).ToList();
+                            foreach (var item in nuochoa)
+                            {
+                                <!-- product single item start -->
+                                <div class="product-item fix">
+                                    <div class="product-thumb">
+                                        <a href="product-details.html">
+                                            <img src="~/Assets/img/SanPham/@item.HinhAnh"  alt="">
+                                            
+                                        </a>
+                                        <div class="product-label">
+                                            <span>new</span>
+                                        </div>
+                                        <div class="product-action-link">
+                                            <a href="#" data-toggle="modal" data-target="#quick_view">
+                                                <span data-toggle="tooltip" data-placement="left" title="Quick view">
+                                                    <i class="fa fa-search"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist">
+                                                <i class="fa fa-heart-o"></i>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Compare">
+                                                <i class="fa fa-refresh"></i>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Add to cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                        <div class="pricebox">
+                                            <span class="regular-price">@item.GiaTien.Value.ToString("#,##0 đ")</span>
+                                            <div class="ratings">
+                                                @for (int i = 0; i < item.DanhGia; i++)
+                                                {
+                                                    <span class="good"><i class="fa fa-star"></i></span>
+                                                }
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- product single item end -->
+                            }
+                        }
+                    </div>
+                    <!-- featured category end -->
+                </div>
+                <!-- featured category area end -->
+                <!-- banner statistic start -->
+                <div class="banner-statistic pt-28 pb-30 pb-sm-0">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7">
+                            <div class="img-container fix img-full mb-sm-30">
+                                <a href="#">
+                                    <img src="Assets/img/banner/banner_static2.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5">
+                            <div class="img-container fix img-full mb-sm-30">
+                                <a href="#">
+                                    <img src="Assets/img/banner/banner_static3.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- banner statistic end -->
+                <!-- category features area start -->
+                <div class="category-feature-area">
+                    <div class="row">
+                        <!-- New Products area start -->
+                        <div class="col-lg-4">
+                            <div class="category-wrapper mb-md-24 mb-sm-24">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>Hàng Mới</h3>
+                                    <div class="category-append"></div>
+                                </div> <!-- section title end -->
+                                <div class="category-carousel-active row" data-row="4">
+                                    @{
+                                        List<DoAnCoSo.Models.SanPham> hangmoi = (from s in db.SanPhams orderby s.NgayNhapHang descending select s).Take(8).ToList();
+                                        foreach (var item in hangmoi)
+                                        {
+                                            <div class="col">
+                                                <div class="category-item">
+                                                    <div class="category-thumb">
+                                                        <a href="product-details.html">
+                                                            <img src="~/Assets/img/SanPham/@item.HinhAnh" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="category-content">
+                                                        <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                                        <div class="price-box">
+                                                            <div class="regular-price">
+                                                                @item.GiaTien.Value.ToString("#,##0 đ")
+                                                            </div>
+                                                            <div class="old-price">
+                                                                <del></del>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            @for (int i = 0; i < item.DanhGia; i++)
+                                                            {
+                                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                            }
+                                                            <div class="pro-review">
+                                                                <span>1 review(s)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- end single item -->
+                                            </div> <!-- end single item column -->
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- New Products area end -->
+                        <!-- Most viewed area start -->
+                        <div class="col-lg-4">
+                            <div class="category-wrapper mb-md-24 mb-sm-24">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>Đánh Giá</h3>
+                                    <div class="category-append"></div>
+                                </div> <!-- section title end -->
+                                <div class="category-carousel-active row" data-row="4">
+                                    @{
+                                        List<DoAnCoSo.Models.SanPham> danhgia = (from s in db.SanPhams orderby s.DanhGia descending select s).Take(8).ToList();
+                                        foreach (var item in danhgia)
+                                        {
+                                            <div class="col">
+                                                <div class="category-item">
+                                                    <div class="category-thumb">
+                                                        <a href="product-details.html">
+                                                            <img src="~/Assets/img/SanPham/@item.HinhAnh" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="category-content">
+                                                        <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                                        <div class="price-box">
+                                                            <div class="regular-price">
+                                                                @item.GiaTien.Value.ToString("#,##0 đ")
+                                                            </div>
+                                                            <div class="old-price">
+                                                                <del>@item.GiaTien.Value.ToString("#,##0 đ")</del>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            @for (int i = 0; i < item.DanhGia; i++)
+                                                            {
+                                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                            }
+
+                                                            <div class="pro-review">
+                                                                <span>1 review(s)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- end single item -->
+                                            </div> <!-- end single item column -->
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Most viewed area end -->
+                        <!-- Most viewed area start -->
+                        <div class="col-lg-4">
+                            <div class="category-wrapper mb-md-24 mb-sm-24">
+                                <div class="section-title-2 d-flex justify-content-between mb-28">
+                                    <h3>Giảm Giá</h3>
+                                    <div class="category-append"></div>
+                                </div> <!-- section title end -->
+                                <div class="category-carousel-active row" data-row="4">
+                                    @{
+                                        List<DoAnCoSo.Models.SanPham> giamgia = (from s in db.SanPhams orderby s.GiamGia descending select s).Take(8).ToList();
+                                        foreach (var item in giamgia)
+                                        {
+                                            <div class="col">
+                                                <div class="category-item">
+                                                    <div class="category-thumb">
+                                                        <a href="product-details.html">
+                                                            <img src="~/Assets/img/SanPham/@item.HinhAnh" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="category-content">
+                                                        <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                                                        <div class="price-box">
+                                                            <div class="regular-price">
+                                                                @item.GiaTien.Value.ToString("#,##0 đ")
+                                                            </div>
+                                                            <div class="old-price">
+                                                                <del>@item.GiaTien.Value.ToString("#,##0 đ")</del>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ratings">
+                                                            @for (int i = 0; i < item.DanhGia; i++)
+                                                            {
+                                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                            }
+                                                            <div class="pro-review">
+                                                                <span>1 review(s)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- end single item -->
+                                            </div> <!-- end single item column -->
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Most viewed area end -->
+                    </div>
+                </div>
+                <!-- category features area end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page wrapper end -->
+<!-- latest product start -->
+<div class="latest-product">
+    <div class="container">
+        <div class="section-title mb-30">
+            <div class="title-icon">
+                <i class="fa fa-flash"></i>
+            </div>
+            <h3>Son Môi</h3>
+        </div> <!-- section title end -->
+        <!-- featured category start -->
+        <div class="latest-product-active slick-padding slick-arrow-style">
+            @{
+                List<DoAnCoSo.Models.SanPham> son = (from s in db.SanPhams select s).Where(w => w.TenDanhMuc == "Son").Take(6).ToList();
+                foreach (var item in son)
+                {
+                    <!-- product single item start -->
+                    <div class="product-item fix">
+                        <div class="product-thumb">
+                            <a href="product-details.html">
+                                <img src="~/Assets/img/SanPham/@item.HinhAnh" alt="">
+                                
+                            </a>
+                            <div class="product-label">
+                                <span>hot</span>
+                            </div>
+                            <div class="product-action-link">
+                                <a href="#" data-toggle="modal" data-target="#quick_view">
+                                    <span data-toggle="tooltip"
+                                          data-placement="left" title="Quick view"><i class="fa fa-search"></i></span>
+                                </a>
+                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h4><a href="product-details.html">@item.TenSanPham</a></h4>
+                            <div class="pricebox">
+                                <span class="regular-price">@item.GiaTien.Value.ToString("#,##0 đ")</span>
+                                <div class="ratings">
+                                    @for (int i = 0; i < item.DanhGia; i++)
+                                    {
+                                        <span class="good"><i class="fa fa-star"></i></span>
+                                    }
+                                    <div class="pro-review">
+                                        <span>1 review(s)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product single item end -->
+                }
+            }
+        </div>
+        <!-- featured category end -->
+    </div>
+</div>
+<!-- latest product end -->
+>
+
