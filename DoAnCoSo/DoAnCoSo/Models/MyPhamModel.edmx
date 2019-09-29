@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyPhamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyPhamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Banner">
           <Key>
             <PropertyRef Name="ID" />
@@ -76,8 +76,10 @@
           <Property Name="MoTa" Type="nvarchar" MaxLength="150" />
           <Property Name="ChiTiet" Type="ntext" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="150" />
-          <Property Name="NgayVietTin" Type="datetime" />
+          <Property Name="NgayDang" Type="datetime" />
           <Property Name="ChuyenMucID" Type="uniqueidentifier" />
+          <Property Name="NguoiDang" Type="nvarchar" MaxLength="50" />
+          <Property Name="Video" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityContainer Name="MyPhamModelStoreContainer">
           <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
@@ -89,8 +91,7 @@
           <EntitySet Name="ThuongHieu" EntityType="Self.ThuongHieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyPhamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -165,8 +166,10 @@
           <Property Name="MoTa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="NgayVietTin" Type="DateTime" Precision="3" />
           <Property Name="ChuyenMucID" Type="Guid" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="NguoiDang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Video" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="MyPhamEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Banners" EntityType="Self.Banner" />
@@ -256,12 +259,14 @@
           <EntitySetMapping Name="TinTucs">
             <EntityTypeMapping TypeName="MyPhamModel.TinTuc">
               <MappingFragment StoreEntitySet="TinTuc">
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenTinTuc" ColumnName="TenTinTuc" />
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="NgayVietTin" ColumnName="NgayVietTin" />
                 <ScalarProperty Name="ChuyenMucID" ColumnName="ChuyenMucID" />
               </MappingFragment>
             </EntityTypeMapping>

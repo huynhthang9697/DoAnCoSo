@@ -19,7 +19,9 @@ namespace DoAnCoSo.Models
         public string MoTa { get; set; }
         public string ChiTiet { get; set; }
         public string HinhAnh { get; set; }
-        public Nullable<System.DateTime> NgayVietTin { get; set; }
         public Nullable<System.Guid> ChuyenMucID { get; set; }
+        public Nullable<System.DateTime> NgayDang { get; set; }
+        public string NguoiDang { get; set; }
+        public string Video { get; set; }
     }
 }

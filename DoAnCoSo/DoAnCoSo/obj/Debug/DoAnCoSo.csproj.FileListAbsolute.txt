@@ -140,3 +140,7 @@ D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\obj\Debug\DoAnCoSo.csproj.CopyComplete
 D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\obj\Debug\DoAnCoSo.dll
 D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\obj\Debug\DoAnCoSo.pdb
 D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\obj\Debug\DoAnCoSo.csprojAssemblyReference.cache
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.dll
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.Mvc.dll
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.xml
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.Mvc.xml

@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@{
+    var db = new DoAnCoSo.Models.MyPhamEntities();
+}
+
+<div class="blog-main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-2 order-lg-1">
+                <div class="blog-sidebar-wrapper">
+                    <div class="blog-sidebar mb-30">
+                        <div class="sidebar-serch-form">
+                            <form action="#">
+                                <input type="text" class="search-field" placeholder="search here">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div> <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-20">categories</h4>
+                        <ul class="blog-archive">
+                            <li><a href="#">dry food (10)</a></li>
+                            <li><a href="#">wet food (08)</a></li>
+                            <li><a href="#">reach (07)</a></li>
+                            <li><a href="#">organic (14)</a></li>
+                            <li><a href="#">capcicum (10)</a></li>
+                        </ul>
+                    </div> <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-20">Blog Archives</h4>
+                        <ul class="blog-archive">
+                            <li><a href="#">January (10)</a></li>
+                            <li><a href="#">February (08)</a></li>
+                            <li><a href="#">March (07)</a></li>
+                            <li><a href="#">April (14)</a></li>
+                            <li><a href="#">May (10)</a></li>
+                        </ul>
+                    </div> <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-30">recent post</h4>
+                        <div class="recent-post mb-20">
+                            <div class="recent-post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="~/Assets/img/product/product-img1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="recent-post-des">
+                                <span><a href="blog-details.html">first blog post</a></span>
+                                <span class="post-date">28.10.2018</span>
+                            </div>
+                        </div> <!-- end single popular item -->
+                        <div class="recent-post mb-20">
+                            <div class="recent-post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="~/Assets/img/product/product-img2.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="recent-post-des">
+                                <span><a href="blog-details.html">second blog post</a></span>
+                                <span class="post-date">28.10.2018</span>
+                            </div>
+                        </div> <!-- end single popular item -->
+                        <div class="recent-post mb-20">
+                            <div class="recent-post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="~/Assets/img/product/product-img3.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="recent-post-des">
+                                <span><a href="blog-details.html">third blog post</a></span>
+                                <span class="post-date">28.10.2018</span>
+                            </div>
+                        </div> <!-- end single popular item -->
+                    </div> <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-30">Tags</h4>
+                        <ul class="blog-tags">
+                            <li><a href="#">camera</a></li>
+                            <li><a href="#">computer</a></li>
+                            <li><a href="#">watch</a></li>
+                            <li><a href="#">smartphone</a></li>
+                            <li><a href="#">bag</a></li>
+                            <li><a href="#">shoes</a></li>
+                        </ul>
+                    </div> <!-- single sidebar end -->
+                </div>
+            </div>
+            <div class="col-lg-9 order-1 order-lg-2">
+                <div class="blog-wrapper-inner">
+                    <div class="row">
+
+                        @{
+                            int page = 1;
+                            int itemperpage = 2;
+
+                            List<DoAnCoSo.Models.TinTuc> tintuc = db.TinTucs.OrderByDescending(b => b.NgayDang).Skip((page - 1) * itemperpage).Take(itemperpage).ToList();
+                            foreach (var item in tintuc)
+                            {
+                                if (item.HinhAnh == null)
+                                {
+                                    <!-- start single blog item -->
+                                    <div class="col-lg-12">
+                                        <div class="blog-item mb-26">
+                                            <div class="blog-thumb embed-responsive embed-responsive-16by9">
+                                                <iframe src="@item.Video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                            </div>
+
+
+                                            <div class="blog-content">
+                                                <h3><a href="blog-details.html">@item.TenTinTuc</a></h3>
+                                                <div class="blog-meta">
+                                                    <span class="posted-author">By: @item.NguoiDang</span>
+                                                    <span class="post-date">@item.NgayDang.Value.ToString("dd-MM-yyyy")</span>
+                                                </div>
+                                                <p>@item.MoTa</p>
+                                            </div>
+                                            <a href="blog-details.html">Xem Tiếp<i class="fa fa-long-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- end single blog item -->
+                                }
+                                else
+                                {
+                                    <div class="col-lg-12">
+                                        <div class="blog-item mb-26">
+                                            <div class="blog-thumb img-full fix">
+                                                <a href="blog-details.html">
+                                                    <img src="~/Assets/img/blog/@item.HinhAnh" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="blog-content">
+                                                <h3><a href="blog-details.html">@item.TenTinTuc</a></h3>
+                                                <div class="blog-meta">
+                                                    <span class="posted-author">By: @item.NguoiDang</span>
+                                                    <span class="post-date">@item.NgayDang.Value.ToString("dd-MM-yyyy")</span>
+                                                </div>
+                                                <p>@item.MoTa</p>
+                                            </div>
+                                            <a href="blog-details.html">Xem Tiếp<i class="fa fa-long-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+                <!-- start pagination area -->
+                <div class="paginatoin-area text-center pt-30 pb-30">
+                    <div class="row">
+                        <div class="col-12">
+
+
+                            <nav class="blog-pagination justify-content-center d-flex">
+                                <ul class="pagination">
+                                    @{
+                                        int trangtruoc = 1;
+                                        trangtruoc = page - 1;
+
+                                        <li class="page-item">
+                                            <a href="@Url.Action("Index", "GocLamDep", new { trang = trangtruoc})" class="page-link" aria-label="Previous">
+                                                <span aria-hidden="true">
+                                                    <span class="ti-arrow-left">Trước</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        int TongSoTinTuc = 20;
+                                        int SoTrang = TongSoTinTuc / itemperpage;
+                                        if (TongSoTinTuc % itemperpage != 0)
+                                        {
+                                            SoTrang++;
+                                        }
+                                        for (int i = 1; i <= SoTrang; i++)
+                                        {
+                                            <li class="page-item">
+                                                <a href="@Url.Action("Index", "GocLamDep", new { trang = i})" class="page-link">@i</a>
+                                            </li>
+                                        }
+                                        int trangsau = SoTrang;
+                                        if (page < SoTrang)
+                                        {
+                                            trangsau = page + 1;
+                                        }
+                                    }
+
+
+                                    <li class="page-item">
+                                        <a href="@Url.Action("Index", "GocLamDep", new { trang = trangsau})" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">
+                                                <span class="ti-arrow-right">Sau</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- end pagination area -->
+            </div>
+        </div>
+    </div>
+</div>
+

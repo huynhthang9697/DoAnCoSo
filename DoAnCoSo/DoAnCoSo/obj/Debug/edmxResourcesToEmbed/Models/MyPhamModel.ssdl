@@ -71,8 +71,10 @@
     <Property Name="MoTa" Type="nvarchar" MaxLength="150" />
     <Property Name="ChiTiet" Type="ntext" />
     <Property Name="HinhAnh" Type="nvarchar" MaxLength="150" />
-    <Property Name="NgayVietTin" Type="datetime" />
+    <Property Name="NgayDang" Type="datetime" />
     <Property Name="ChuyenMucID" Type="uniqueidentifier" />
+    <Property Name="NguoiDang" Type="nvarchar" MaxLength="50" />
+    <Property Name="Video" Type="nvarchar" MaxLength="150" />
   </EntityType>
   <EntityContainer Name="MyPhamModelStoreContainer">
     <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />

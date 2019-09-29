@@ -47,6 +47,12 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -111,6 +117,9 @@
     <Content Include="Assets\img\about\avatar.jpg" />
     <Content Include="Assets\img\about\services.jpg" />
     <Content Include="Assets\img\banner\1.jpg" />
+    <Content Include="Assets\img\banner\banner1.jpg" />
+    <Content Include="Assets\img\banner\banner2.jpg" />
+    <Content Include="Assets\img\banner\banner3.jpg" />
     <Content Include="Assets\img\banner\banner_left.jpg" />
     <Content Include="Assets\img\banner\banner_left2.jpg" />
     <Content Include="Assets\img\banner\banner_shop.jpg" />
@@ -239,6 +248,7 @@
     <Content Include="Assets\js\vendor\jquery-3.3.1.min.js" />
     <Content Include="Assets\js\vendor\modernizr-3.6.0.min.js" />
     <Content Include="Assets\js\vendor\popper.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\MyPhamModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -254,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GocLamDepController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -316,6 +327,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\GocLamDep\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
