@@ -1,0 +1,6 @@
+D:\GitHub\DoAnCoSo\DoAnCoSo\MyPhamDB\bin\Debug\MyPhamDB.dll
+D:\GitHub\DoAnCoSo\DoAnCoSo\MyPhamDB\bin\Debug\MyPhamDB.pdb
+D:\GitHub\DoAnCoSo\DoAnCoSo\MyPhamDB\obj\Debug\MyPhamDB.csproj.CoreCompileInputs.cache
+D:\GitHub\DoAnCoSo\DoAnCoSo\MyPhamDB\obj\Debug\MyPhamDB.dll
+D:\GitHub\DoAnCoSo\DoAnCoSo\MyPhamDB\obj\Debug\MyPhamDB.pdb
+D:\GitHub\DoAnCoSo\DoAnCoSo\MyPhamDB\obj\Debug\MyPhamDB.csprojAssemblyReference.cache

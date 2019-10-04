@@ -8,12 +8,26 @@ namespace DoAnCoSo.Controllers
 {
     public class GocLamDepController : Controller
     {
-        // GET: GocLamDep
-        public ActionResult Index()
+        // GET: TinTuc
+        public ActionResult Index(int trang = 1, string tukhoa = "", string chuyenmucid = "")
         {
-            
-            return View();
+            int sotintuc = 2;
+            ViewBag.SoTinTuc = sotintuc;
+            List<MyPhamDB.TinTuc_Info> tintuc = MyPhamDB.TinTuc_Data.DanhSachBaiViet(trang, tukhoa, chuyenmucid, sotintuc);
+            ViewBag.TongSoTinTuc = MyPhamDB.TinTuc_Data.TongSoTinTuc(tukhoa, chuyenmucid);
+            ViewBag.ChuyenMucID = chuyenmucid;
+            return View(tintuc);
+        }
+        public ActionResult ChiTiet(string tintucid)
+        {
+            MyPhamDB.TinTuc_Info t = MyPhamDB.TinTuc_Data.LayTinTuc(tintucid);
+            return View(t);
+        }
+
+        [HttpPost]
+        public ActionResult XuLy(FormCollection f)
+        {
+            return RedirectToAction("Index", "GocLamDep", new { tukhoa = f["tukhoa"].ToString(), chuyenmucid = f["chuyenmucid"].ToString() });
         }
     }
-
 }

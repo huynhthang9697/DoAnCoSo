@@ -1,0 +1,255 @@
+﻿@model MyPhamDB.TinTuc_Info
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@{
+    var db = new DoAnCoSo.Models.MyPhamEntities();
+}
+<!-- breadcrumb area start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-wrap">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">blog details image</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb area end -->
+<!-- blog main wrapper start -->
+<div class="blog-main-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 order-2">
+                <div class="blog-sidebar-wrapper mt-md-34 mt-sm-30">
+                    <div class="blog-sidebar mb-30">
+                        <div class="sidebar-serch-form">
+                            <form action="@Url.Action("XuLy", "GocLamDep")" method="post">
+                                <input type="hidden" name="chuyenmucid" value="@ViewBag.ChuyenMucID" />
+                                <input type="text" class="search-field" name="tukhoa" placeholder="Gõ từ khóa">
+                                <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div> <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-20">categories</h4>
+                        <ul class="blog-archive">
+                            @{
+                                List<DoAnCoSo.Models.ChuyenMuc> chuyenmuc = (from s in db.ChuyenMucs select s).ToList();
+                                foreach (var item in chuyenmuc)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "GocLamDep", new { chuyenmucid = item.ID.ToString() })" class="d-flex">
+                                            <p>@item.TenChuyenMuc</p>
+                                            <p> (@MyPhamDB.ChuyenMuc_Data.SoLuongTinTuc(item.ID.ToString()))</p>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                    <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-30">Tags</h4>
+                        <ul class="blog-tags">
+                            <li><a href="#">camera</a></li>
+                            <li><a href="#">computer</a></li>
+                            <li><a href="#">watch</a></li>
+                            <li><a href="#">smartphone</a></li>
+                            <li><a href="#">bag</a></li>
+                            <li><a href="#">shoes</a></li>
+                        </ul>
+                    </div>
+                    <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-30">recent post</h4>
+                        <div class="recent-post mb-20">
+                            <div class="recent-post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="~/Assets/img/product/product-img1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="recent-post-des">
+                                <span><a href="blog-details.html">first blog post</a></span>
+                                <span class="post-date">28.10.2018</span>
+                            </div>
+                        </div> <!-- end single popular item -->
+                        <div class="recent-post mb-20">
+                            <div class="recent-post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="~/Assets/img/product/product-img2.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="recent-post-des">
+                                <span><a href="blog-details.html">second blog post</a></span>
+                                <span class="post-date">28.10.2018</span>
+                            </div>
+                        </div> <!-- end single popular item -->
+                        <div class="recent-post mb-20">
+                            <div class="recent-post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="~/Assets/img/product/product-img3.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="recent-post-des">
+                                <span><a href="blog-details.html">third blog post</a></span>
+                                <span class="post-date">28.10.2018</span>
+                            </div>
+                        </div> <!-- end single popular item -->
+                    </div> <!-- single sidebar end -->
+                    <div class="blog-sidebar mb-24">
+                        <h4 class="title mb-30">Bài viết gần đây</h4>
+                        @{
+                            List<DoAnCoSo.Models.TinTuc> baiviet = (from s in db.TinTucs orderby s.NgayDang descending select s).Take(5).ToList();
+                            foreach (var item in baiviet)
+                            {
+                                <div class="recent-post mb-20">
+                                    <div class="recent-post-thumb">
+                                        <a href="blog-details.html">
+                                            <img src="~/Assets/img/product/product-img1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="recent-post-des">
+                                        <span><a href="blog-details.html">@item.TenTinTuc</a></span>
+                                        <span class="post-date">@item.NgayDang.Value.ToString("dd-MM-yyyy")</span>
+                                    </div>
+                                </div> <!-- end single popular item -->
+                            }
+                        }
+                    </div>
+                    <!-- single sidebar end -->
+                </div>
+            </div>
+            <div class="col-lg-9 order-1">
+                <div class="blog-wrapper-inner">
+                    <div class="row blog-content-wrap">
+                        <!-- start single blog item -->
+                        <div class="col-lg-12">
+                            <div class="blog-item mb-30">
+                                <div class="blog-thumb img-full fix">
+                                    <img src="~/Assets/img/blog/@Model.Hinhanh" alt="">
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-details">
+                                        <h3 class="blog-heading">@Model.Tentintuc</h3>
+                                        <div class="blog-meta">
+                                            <a class="author" href="#"><i class="icon-people"></i>@Model.Nguoidang</a>
+                                            <a class="comment" href="#"><i class="icon-bubbles"></i> 3 comment</a>
+                                            <a class="post-time" href="#"><i class="icon-calendar"></i>@Model.Ngaydang</a>
+                                        </div>
+                                        <blockquote><p>@Model.Mota</p></blockquote>
+                                        <p>
+                                            @Model.Chitiet
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="tag-line">
+                                    <h4>tag:</h4>
+                                    <a href="#">dry food</a>,
+                                    <a href="#">wet food</a>,
+                                    <a href="#">reach food</a>,
+                                </div>
+                                <div class="blog-sharing text-center mt-34 mt-sm-34">
+                                    <h4>share this post:</h4>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="comment-section">
+                                <h3>03 comment</h3>
+                                <ul>
+                                    <li>
+                                        <div class="author-avatar">
+                                            <img src="~/Assets/img/blog/comment-icon.png" alt="">
+                                        </div>
+                                        <div class="comment-body">
+                                            <span class="reply-btn"><a href="#">reply</a></span>
+                                            <h5 class="comment-author">admin</h5>
+                                            <div class="comment-post-date">
+                                                20 nov, 2018 at 9:30pm
+                                            </div>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>
+                                        </div>
+                                    </li>
+                                    <li class="comment-children">
+                                        <div class="author-avatar">
+                                            <img src="~/Assets/img/blog/comment-icon.png" alt="">
+                                        </div>
+                                        <div class="comment-body">
+                                            <span class="reply-btn"><a href="#">reply</a></span>
+                                            <h5 class="comment-author">admin</h5>
+                                            <div class="comment-post-date">
+                                                20 nov, 2018 at 9:30pm
+                                            </div>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="author-avatar">
+                                            <img src="~/Assets/img/blog/comment-icon.png" alt="">
+                                        </div>
+                                        <div class="comment-body">
+                                            <span class="reply-btn"><a href="#">reply</a></span>
+                                            <h5 class="comment-author">admin</h5>
+                                            <div class="comment-post-date">
+                                                20 nov, 2018 at 9:30pm
+                                            </div>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- comment area start -->
+                            <!-- start blog comment box -->
+                            <div class="blog-comment-wrapper mb-sm-6">
+                                <h3>leave a reply</h3>
+                                <p>Your email address will not be published. Required fields are marked *</p>
+                                <form action="#">
+                                    <div class="comment-post-box">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>comment</label>
+                                                <textarea name="commnet" placeholder="Write a comment"></textarea>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20">
+                                                <label>Name</label>
+                                                <input type="text" class="coment-field" placeholder="Name">
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20">
+                                                <label>Email</label>
+                                                <input type="text" class="coment-field" placeholder="Email">
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 mb-sm-20">
+                                                <label>Website</label>
+                                                <input type="text" class="coment-field" placeholder="Website">
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="coment-btn mt-20">
+                                                    <input class="sqr-btn" type="submit" name="submit" value="post comment">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- start blog comment box -->
+                        </div>
+                        <!-- end single blog item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- blog main wrapper end -->

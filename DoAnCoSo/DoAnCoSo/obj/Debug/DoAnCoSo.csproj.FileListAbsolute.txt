@@ -144,3 +144,7 @@ D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.dll
 D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.Mvc.dll
 D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.xml
 D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\PagedList.Mvc.xml
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\MyPhamDB.dll
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\MyPhamDB.pdb
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\EntityFramework.SqlServer.dll
+D:\GitHub\DoAnCoSo\DoAnCoSo\DoAnCoSo\bin\EntityFramework.SqlServer.xml

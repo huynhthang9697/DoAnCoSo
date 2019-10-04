@@ -139,13 +139,13 @@
                                     <!-- Mega Category Menu End -->
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="@Url.Action("Index","GocLamDep")">
+                                    <a href="@Url.Action("Index", "GocLamDep")">
                                         <i class="fa fa-check-square-o"></i> Góc Làm Đẹp
                                     </a>
                                     <!-- Mega Category Menu Start -->
                                     <ul class="category-mega-menu">
                                         <li class="menu-item-has-children">
-                                            <a href="shop-grid-left-sidebar.html">Chăm Sóc Da</a>
+                                            <a href="@Url.Action("Index", "GocLamDep", new { chuyenmucid = "33050aa6-95cd-49a2-9f08-a4e40da8903c" })">Chăm Sóc Da</a>
                                         </li>
                                         <li class="menu-item-has-children">
                                             <a href="shop-grid-left-sidebar.html">Cách Makeup</a>
@@ -183,9 +183,9 @@
                                 <li><a href="contact-us.html">Kem Dưỡng Da</a></li>
                                 <li><a href="contact-us.html">Nước Hoa</a></li>
                                 <li>
-                                    <a href="@Url.Action("Index","GocLamDep")">Góc Làm Đẹp<i class="fa fa-angle-down"></i></a>
+                                    <a href="@Url.Action("Index", "GocLamDep")">Góc Làm Đẹp<i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown">
-                                        <li><a href="blog-left-sidebar.html">Cách chăm sóc da</a></li>
+                                        <li><a href="@Url.Action("Index", "GocLamDep", new { chuyenmucid = "33050aa6-95cd-49a2-9f08-a4e40da8903c" })">Cách chăm sóc da</a></li>
                                         <li><a href="blog-left-sidebar-2-col.html">Cách Makeup</a></li>
                                         <li><a href="blog-right-sidebar.html">Cẩm nang mỹ phẩm</a></li>
                                         <li><a href="blog-full-2-column.html">Đánh giá</a></li>
@@ -226,7 +226,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <!-- hero slider end -->
 <!-- home banner area start -->
 <div class="banner-area mt-30">
@@ -369,44 +369,31 @@
                         </div> <!-- section title end -->
                         <!-- blog wrapper start -->
                         <div class="blog-carousel-active">
-                            <div class="blog-item">
-                                <div class="blog-thumb img-full fix">
-                                    <a href="blog-details.html">
-                                        <img src="Assets/img/blog/img_blog1.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <h3><a href="blog-details.html">post format audio</a></h3>
-                                    <div class="blog-meta">
-                                        <span class="posted-author">by: admin</span>
-                                        <span class="post-date">25 Nov, 2018</span>
-                                    </div>
-                                    <p>
-                                        Curabitur sed diam enim. Sed varius faucibus lectus, a scelerisque massa
-                                        posuere ac. Quisque dapibus, est ac...
-                                    </p>
-                                </div>
-                                <a href="blog-details.html">read more <i class="fa fa-long-arrow-right"></i></a>
-                            </div> <!-- end single blog item -->
-                            <div class="blog-item">
-                                <div class="blog-thumb img-full fix">
-                                    <a href="blog-details.html">
-                                        <img src="Assets/img/blog/img_blog2.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <h3><a href="blog-details.html">post format image</a></h3>
-                                    <div class="blog-meta">
-                                        <span class="posted-author">by: admin</span>
-                                        <span class="post-date">25 Nov, 2018</span>
-                                    </div>
-                                    <p>
-                                        Curabitur sed diam enim. Sed varius faucibus lectus, a scelerisque massa
-                                        posuere ac. Quisque dapibus, est ac...
-                                    </p>
-                                </div>
-                                <a href="blog-details.html">read more <i class="fa fa-long-arrow-right"></i></a>
-                            </div> <!-- end single blog item -->
+                            @{
+                                List<DoAnCoSo.Models.TinTuc> tintuc = (from s in db.TinTucs orderby s.NgayDang descending select s).Take(4).ToList();
+                                foreach (var item in tintuc)
+                                {
+                                    <div class="blog-item">
+                                        <div class="blog-thumb img-full fix">
+                                            <a href="blog-details.html">
+                                                <img src="Assets/img/blog/@item.HinhAnh" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <h3><a href="blog-details.html">@item.TenTinTuc</a></h3>
+                                            <div class="blog-meta">
+                                                <span class="posted-author">by: @item.NguoiDang</span>
+                                                <span class="post-date">@item.NgayDang.Value.ToString("dd-MM-yyyy")</span>
+                                            </div>
+                                            <p>
+                                                Curabitur sed diam enim. Sed varius faucibus lectus, a scelerisque massa
+                                                posuere ac. Quisque dapibus, est ac...
+                                            </p>
+                                        </div>
+                                        <a href="blog-details.html">read more <i class="fa fa-long-arrow-right"></i></a>
+                                    </div> <!-- end single blog item -->
+                                }
+                            }
                         </div>
                         <!-- blog wrapper end -->
                     </div>
@@ -414,7 +401,7 @@
                     <!-- testimonial area start -->
                     <div class="main-sidebar testimonial-area pb-sm-70">
                         <div class="section-title-2 mb-28">
-                            <h3>Clients Say</h3>
+                            <h3>Bình Luận</h3>
                         </div> <!-- section title end -->
                         <div class="testimonial-carousel-active slick-dot-style">
                             <div class="testimonial-item text-center">
@@ -617,7 +604,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="img-container fix img-full mb-sm-30">
                                         <a href="#">
-                                            <img src="Assets/img/banner/@item.HinhAnh" alt="">
+                                            <img src="~/Assets/img/banner/@item.HinhAnh" alt="">
                                         </a>
                                     </div>
                                 </div>
