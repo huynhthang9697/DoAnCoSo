@@ -73,15 +73,15 @@
     <EntitySetMapping Name="TinTucs">
       <EntityTypeMapping TypeName="MyPhamModel.TinTuc">
         <MappingFragment StoreEntitySet="TinTuc">
-          <ScalarProperty Name="Video" ColumnName="Video" />
+          <ScalarProperty Name="TenChuyenMuc" ColumnName="TenChuyenMuc" />
           <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
-          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TenTinTuc" ColumnName="TenTinTuc" />
-          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-          <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
-          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
           <ScalarProperty Name="ChuyenMucID" ColumnName="ChuyenMucID" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="TenTinTuc" ColumnName="TenTinTuc" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<DoAnCoSo.Models.TinTuc>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="content">
+    <h3>
+        @Html.ActionLink("Thêm mới", "Create")
+    </h3>
+    <!-- Basic datatable -->
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">Góc làm đẹp</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <table class="table datatable-basic">
+            <thead>
+                <tr>
+                    <th>STT</th>
+
+                    <th>
+                        Hình Ảnh
+                    </th>
+
+                    <th>
+                        Tên Tin Tức
+                    </th>
+
+                    <th>
+                        Ngày Đăng
+                    </th>
+
+                    <th>
+                        Người Đăng
+                    </th>
+                    <th class="text-center">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int i = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(i++)</td>
+                            <td>
+                                <img style="width:75px;height:50px" src="~/Assets/img/blog/@item.HinhAnh" alt="">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenTinTuc)
+                            </td>
+                            <td>
+                                @item.NgayDang.Value.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NguoiDang)
+                            </td>
+                            <td class="text-center">
+                                <ul class="icons-list">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="@Url.Action("Edit", "GocLamDeps", new { id = item.ID })"><i class="icon-pencil"></i>Chỉnh Sửa</a></li>
+                                            <li><a href="@Url.Action("Details", "GocLamDeps", new { id = item.ID })"><i class="icon-book"></i>Chi Tiết</a></li>
+                                            <li><a href="@Url.Action("Delete", "GocLamDeps", new { id = item.ID })"><i class="icon-bin2"></i>Xóa</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /basic datatable -->
+</div>
+
+@section Js{
+    <script src="~/Areas/Admin/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/Areas/Admin/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+    <script src="~/Areas/Admin/Assets/js/app.js"></script>
+    <script src="~/Areas/Admin/global_assets/js/demo_pages/datatables_basic.js"></script>
+}

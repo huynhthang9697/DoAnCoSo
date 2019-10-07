@@ -2456,6 +2456,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\GocLamDepsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Controllers\GocLamDepController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2886,6 +2887,11 @@
     <Content Include="Areas\Admin\Global_assets\locales\en.json" />
     <Content Include="Areas\Admin\Global_assets\locales\ru.json" />
     <Content Include="Areas\Admin\Global_assets\locales\ua.json" />
+    <Content Include="Areas\Admin\Views\GocLamDeps\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\GocLamDeps\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\GocLamDeps\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\GocLamDeps\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\GocLamDeps\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

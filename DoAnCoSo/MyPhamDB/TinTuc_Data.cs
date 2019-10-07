@@ -38,11 +38,12 @@ namespace MyPhamDB
                 item.Ngaydang = DateTime.Parse(t.Rows[i]["ngaydang"].ToString());
                 item.Chuyenmucid = Guid.Parse(t.Rows[i]["chuyenmucid"].ToString());
                 item.Nguoidang = t.Rows[i]["nguoidang"].ToString();
-                item.Video = t.Rows[i]["video"].ToString();
+                
                 items.Add(item);
             }
             return items;
         }
+        
         public static int TongSoTinTuc(string tukhoa = "", string chuyenmucid = "")
         {
             int tongso = 10;
@@ -80,7 +81,7 @@ namespace MyPhamDB
                 item.Ngaydang = DateTime.Parse(t.Rows[0]["ngaydang"].ToString());
                 item.Chuyenmucid = Guid.Parse(t.Rows[0]["chuyenmucid"].ToString());
                 item.Nguoidang = t.Rows[0]["nguoidang"].ToString();
-                item.Video = t.Rows[0]["video"].ToString();
+                
             }
             return item;
         }

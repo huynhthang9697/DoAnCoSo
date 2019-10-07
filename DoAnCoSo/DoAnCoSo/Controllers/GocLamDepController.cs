@@ -9,13 +9,15 @@ namespace DoAnCoSo.Controllers
     public class GocLamDepController : Controller
     {
         // GET: TinTuc
-        public ActionResult Index(int trang = 1, string tukhoa = "", string chuyenmucid = "")
+        public ActionResult Index(int trang = 1, string ten = "", string tukhoa = "", string chuyenmucid = "")
         {
             int sotintuc = 2;
             ViewBag.SoTinTuc = sotintuc;
             List<MyPhamDB.TinTuc_Info> tintuc = MyPhamDB.TinTuc_Data.DanhSachBaiViet(trang, tukhoa, chuyenmucid, sotintuc);
             ViewBag.TongSoTinTuc = MyPhamDB.TinTuc_Data.TongSoTinTuc(tukhoa, chuyenmucid);
             ViewBag.ChuyenMucID = chuyenmucid;
+            ViewBag.TuKhoa = tukhoa;
+            ViewBag.TenDanhMuc = ten;
             return View(tintuc);
         }
         public ActionResult ChiTiet(string tintucid)

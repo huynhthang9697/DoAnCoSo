@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Define main variables
         var d3Container = d3.select(element),
-            margin = {top: 5, right: 50, bottom: 40, left: 50},
-            width = d3Container.node().getBoundingClientRect().width - margin.left - margin.right,
+            margin = { top: 5, right: 50, bottom: 40, left: 50 },
+            width = d3Container.node().getBoundingClientRect().Width - margin.left - margin.right,
             height = height - margin.top - margin.bottom,
             tooltipOffset = 30;
 

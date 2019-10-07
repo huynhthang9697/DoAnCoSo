@@ -79,7 +79,7 @@
           <Property Name="NgayDang" Type="datetime" />
           <Property Name="ChuyenMucID" Type="uniqueidentifier" />
           <Property Name="NguoiDang" Type="nvarchar" MaxLength="50" />
-          <Property Name="Video" Type="nvarchar" MaxLength="150" />
+          <Property Name="TenChuyenMuc" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityContainer Name="MyPhamModelStoreContainer">
           <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
@@ -157,6 +157,16 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="HinhAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityContainer Name="MyPhamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Banners" EntityType="Self.Banner" />
+          <EntitySet Name="ChuyenMucs" EntityType="Self.ChuyenMuc" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+          <EntitySet Name="Slideshows" EntityType="Self.Slideshow" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="ThanhViens" EntityType="Self.ThanhVien" />
+          <EntitySet Name="ThuongHieux" EntityType="Self.ThuongHieu" />
+          <EntitySet Name="TinTucs" EntityType="MyPhamModel.TinTuc" />
+        </EntityContainer>
         <EntityType Name="TinTuc">
           <Key>
             <PropertyRef Name="ID" />
@@ -166,21 +176,11 @@
           <Property Name="MoTa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ChuyenMucID" Type="Guid" />
           <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="ChuyenMucID" Type="Guid" />
           <Property Name="NguoiDang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Video" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TenChuyenMuc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="MyPhamEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Banners" EntityType="Self.Banner" />
-          <EntitySet Name="ChuyenMucs" EntityType="Self.ChuyenMuc" />
-          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-          <EntitySet Name="Slideshows" EntityType="Self.Slideshow" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="ThanhViens" EntityType="Self.ThanhVien" />
-          <EntitySet Name="ThuongHieux" EntityType="Self.ThuongHieu" />
-          <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -259,15 +259,15 @@
           <EntitySetMapping Name="TinTucs">
             <EntityTypeMapping TypeName="MyPhamModel.TinTuc">
               <MappingFragment StoreEntitySet="TinTuc">
-                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="TenChuyenMuc" ColumnName="TenChuyenMuc" />
                 <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TenTinTuc" ColumnName="TenTinTuc" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="ChuyenMucID" ColumnName="ChuyenMucID" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TenTinTuc" ColumnName="TenTinTuc" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

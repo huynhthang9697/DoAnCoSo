@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="MyPhamModel.sysdiagram" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyPhamModel.ThanhVien" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyPhamModel.ThuongHieu" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyPhamModel.TinTuc" Width="1.5" PointX="9.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyPhamModel.TinTuc" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
